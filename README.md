@@ -63,7 +63,7 @@ const Diamonds = [
     data: [
       // Market facets
       'market/facets/Create.sol:Create',
-      'market/facets/Markets.sol:MArkets'
+      'market/facets/Markets.sol:Markets'
     ]
   }
 ];
@@ -118,7 +118,7 @@ const Diamonds = [
   {
     key: 'nft',
     data: [
-      // nft facets
+      // OrderNFT facets
       'orderbook/nft/facets/Mint.sol:Mint',
       'orderbook/nft/facets/Burn.sol:Burn',
       'orderbook/nft/facets/Transfer.sol:Transfer'
@@ -168,14 +168,15 @@ Through the key defined above, we can divide storage and identify position, and 
     └─ Orderbook Facets  ◀── ✕ ──┘  │
     └─ OrderNFT Facets   ◀── ✕ ─────┘
 
-─ Orderbook Facade      
+─ Orderbook Facade
 ─ Order NFT Facade
 
 ```
+
 ```
 ─ Market Diamond ──────────────┐
   └─ DiamondContractManager    │
-    └─ Market Facets　   ◀─────┘
+    └─ Market Facets　   ◀────┘
     └─ Orderbook Facets  ◀──┐
     └─ OrderNFT Facets   ◀──┼──┐
                             │  │
