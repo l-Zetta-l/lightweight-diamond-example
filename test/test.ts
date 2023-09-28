@@ -88,6 +88,17 @@ describe("Diamond Test", function () {
     console.log(await marketDiamond.facets());
 
     describe('', () => {
+      it('Market Diamond Loupe Test', async () => {
+        const facets = await marketDiamond.facets();
+        console.log('DiamondContract Origianl Facet: ', facets[2])
+        const functs = facets[2][1];
+        for (let i = 0; i < functs.length; i++) {
+          console.log(`---------------------------------------------------------------`);
+          console.log(await marketDiamond[functs[i]]);
+          console.log(`---------------------------------------------------------------`);
+        }
+      })
+
       // factory orderbook1 diamond from market diamond
       it("New Orderbook 1 Diamond Create", async function () {
         console.log(':: New Orderbook 1 Diamond Create ::');
@@ -137,7 +148,9 @@ describe("Diamond Test", function () {
           await marketDiamond.getAddress())
         ).getAllMarkets())[0];
 
-        const orderbook1SupportInterface = await ethers.getContractAt('Orderbook', orderbook1FacadeAddress);
+        const orderbook1Facade = await ethers.getContractAt('Orderbook', orderbook1FacadeAddress);
+
+        console.log('Orderbook 1 Facade Facets: ', await orderbook1Facade["facets()"]());
 
         const orderbook1OrderFacet = await ethers.getContractAt(
           "contracts/services/orderbook/facets/Order.sol:Order",
@@ -162,7 +175,7 @@ describe("Diamond Test", function () {
         );
         console.log(
           'Orderbook 1 Support Interface[0x21603f43]: ',
-          await orderbook1SupportInterface["supportsInterface(bytes4)"]('0x21603f43')
+          await orderbook1Facade["supportsInterface(bytes4)"]('0x21603f43')
         );
         console.log(`---------------------------------------------------------------`);
 
@@ -189,7 +202,9 @@ describe("Diamond Test", function () {
           await marketDiamond.getAddress())
         ).getAllMarkets())[1];
 
-        const orderbook2SupportInterface = await ethers.getContractAt('Orderbook', orderbook2FacadeAddress);
+        const orderbook2Facade = await ethers.getContractAt('Orderbook', orderbook2FacadeAddress);
+
+        console.log('Orderbook 2 Facade Facets: ', await orderbook2Facade["facets()"]());
 
         const orderbook2OrderFacet = await ethers.getContractAt(
           "contracts/services/orderbook/facets/Order.sol:Order",
@@ -214,7 +229,7 @@ describe("Diamond Test", function () {
         );
         console.log(
           'Orderbook 2 Support Interface[0x21603f43]: ',
-          await orderbook2SupportInterface["supportsInterface(bytes4)"]('0x21603f43')
+          await orderbook2Facade["supportsInterface(bytes4)"]('0x21603f43')
         );
         console.log(`---------------------------------------------------------------`);
 
