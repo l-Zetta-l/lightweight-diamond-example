@@ -85,12 +85,12 @@ describe("Diamond Test", function () {
     console.log('Market: ', await marketDiamond.getAddress());
     console.log(`---------------------------------------------------------------`);
 
-    console.log(await marketDiamond.facets());
+    console.log('Market Diamond Facets:', await marketDiamond.facets());
 
     describe('', () => {
       it('Market Diamond Loupe Test', async () => {
         const facets = await marketDiamond.facets();
-        console.log('DiamondContract Origianl Facet: ', facets[2])
+        console.log('Loupe Facet: ', facets[2])
         const functs = facets[2][1];
         for (let i = 0; i < functs.length; i++) {
           console.log(`---------------------------------------------------------------`);
