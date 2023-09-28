@@ -21,7 +21,15 @@ describe("Diamond Test", function () {
         'contracts/services/orderbook/facets/Cancel.sol:Cancel',
         'contracts/services/orderbook/facets/Get.sol:Get'
       ]
-    }
+    },
+    // {
+    //   key: 'diamond',
+    //   data: [
+    //     'contracts/DiamondAuthFacet.sol:DiamondAuthFacet',
+    //     'contracts/DiamondLoupeFacet.sol:DiamondLoupeFacet',
+    //     'contracts/DiamondContractFacet.sol:DiamondContractFacet'
+    //   ]
+    // }
   ];
 
   let diamondCut: any[] = [];
@@ -70,12 +78,14 @@ describe("Diamond Test", function () {
     console.log(':: Market Diamond Deploy ::');
     const market: ContractFactory = await ethers.getContractFactory("Market");
     console.log(`---------------------------------------------------------------`);
-    console.log(diamondCut)
+    console.log(diamondCut);
     console.log(`---------------------------------------------------------------`);
     const marketDiamond: any = await market.deploy(diamondCut, diamondArgs);
     console.log(`---------------------------------------------------------------`);
     console.log('Market: ', await marketDiamond.getAddress());
     console.log(`---------------------------------------------------------------`);
+
+    console.log(await marketDiamond.facets());
 
     describe('', () => {
       // factory orderbook1 diamond from market diamond

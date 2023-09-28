@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("hardhat-contract-sizer");
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 

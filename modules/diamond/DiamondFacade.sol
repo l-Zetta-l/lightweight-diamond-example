@@ -22,7 +22,7 @@ abstract contract DiamondFacade is DiamondAuth, DiamondLoupe {
     constructor(
         string memory _key,
         address _diamond
-    ) payable DiamondBase(keccak256(abi.encodePacked(_key))) {
+    ) payable DiamondBase(_key) DiamondAuth(false) DiamondLoupe(false) {
         _this.diamond().addr = payable(_diamond);
     }
 
