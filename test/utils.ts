@@ -22,7 +22,6 @@ export async function getSelector(func: any) {
     return abiInterface.getSighash(ethers.Fragment.from(func))
 }
 
-// 함수 고유 식별자 배열 받아서 -> 찾은다음에 제거
 export async function remove(this: any, functionNames: string[]) {
     const selectors: any = this.filter((v: any) => {
         for (const functionName of functionNames) {
