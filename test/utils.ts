@@ -1,4 +1,3 @@
-import { BaseContract, Contract } from "ethers";
 import { ethers } from "hardhat";
 
 export const FacetCutAction = { Add: 0, Replace: 1, Remove: 2 }
