@@ -22,14 +22,6 @@ describe("Diamond Test", function () {
         'contracts/services/orderbook/facets/Get.sol:Get'
       ]
     },
-    // {
-    //   key: 'diamond',
-    //   data: [
-    //     'contracts/DiamondAuthFacet.sol:DiamondAuthFacet',
-    //     'contracts/DiamondLoupeFacet.sol:DiamondLoupeFacet',
-    //     'contracts/DiamondContractFacet.sol:DiamondContractFacet'
-    //   ]
-    // }
   ];
 
   let diamondCut: any[] = [];
