@@ -15,7 +15,7 @@ import {DiamondLoupe} from "./utils/DiamondLoupe.sol";
 
 import {DiamondContractManager} from "./DiamondContractManager.sol";
 
-abstract contract DiamondContract is DiamondAuth, DiamondLoupe {
+abstract contract DiamondContract is DiamondLoupe {
     using DiamondContractManager for bytes32;
     using DiamondContractManager for DiamondContractManager.Data;
 
@@ -23,9 +23,9 @@ abstract contract DiamondContract is DiamondAuth, DiamondLoupe {
         string memory _key,
         IDiamond.Cut[] memory _diamondCut,
         IDiamond.Args memory _args
-    ) payable DiamondBase(_key) DiamondAuth(true) DiamondLoupe(true) {
+    ) payable DiamondBase(_key) DiamondLoupe(true) {
         _this.setOwner(_args.owner);
-        _this.setPermission(address(this), true);
+        _this.setAccess(address(this), true);
         _this.diamond().addr = payable(address(this));
 
         DiamondContractManager.diamondCut(
