@@ -8,6 +8,7 @@ pragma solidity ^0.8.19;
 \******************************************************************************/
 
 import {IDiamond} from "./interfaces/IDiamond.sol";
+import {IDiamondContract} from "./interfaces/IDiamondContract.sol";
 
 import {DiamondBase} from "./utils/DiamondBase.sol";
 import {DiamondAuth} from "./utils/DiamondAuth.sol";
@@ -15,7 +16,11 @@ import {DiamondLoupe} from "./utils/DiamondLoupe.sol";
 
 import {DiamondContractManager} from "./DiamondContractManager.sol";
 
-abstract contract DiamondContract is DiamondLoupe {
+abstract contract DiamondContract is
+    IDiamondContract,
+    DiamondAuth,
+    DiamondLoupe
+{
     using DiamondContractManager for bytes32;
     using DiamondContractManager for DiamondContractManager.Data;
 
@@ -23,7 +28,7 @@ abstract contract DiamondContract is DiamondLoupe {
         string memory _key,
         IDiamond.Cut[] memory _diamondCut,
         IDiamond.Args memory _args
-    ) payable DiamondBase(_key) DiamondLoupe(true) {
+    ) payable DiamondBase(_key) DiamondAuth(true) DiamondLoupe(true) {
         _this.setOwner(_args.owner);
         _this.setAccess(address(this), true);
         _this.diamond().addr = payable(address(this));
